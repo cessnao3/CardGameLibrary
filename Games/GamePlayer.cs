@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Games
+namespace CardGameLibrary.Games
 {
     /// <summary>
     /// Defines the properties for a specific game player

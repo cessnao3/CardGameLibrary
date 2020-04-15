@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GameLibrary.Messages
+namespace CardGameLibrary.Messages
 {
     /// <summary>
     /// Defines the game connection message for the client to connect to the server

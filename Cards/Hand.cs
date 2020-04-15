@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Cards
+namespace CardGameLibrary.Cards
 {
     /// <summary>
     /// Provides a hand that contains a card value

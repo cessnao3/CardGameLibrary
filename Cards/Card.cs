@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Cards
+namespace CardGameLibrary.Cards
 {
     /// <summary>
     /// Defines a card instance that may be used in play

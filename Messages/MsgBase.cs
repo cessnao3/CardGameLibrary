@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Messages
+namespace CardGameLibrary.Messages
 {
     /// <summary>
     /// Defines the types of messages we can use in the given parameters

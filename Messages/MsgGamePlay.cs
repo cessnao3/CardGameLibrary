@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Messages
+namespace CardGameLibrary.Messages
 {
     /// <summary>
     /// Class to facilitate communication within a game

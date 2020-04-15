@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Messages
+namespace CardGameLibrary.Messages
 {
     /// <summary>
     /// Provides the game status for Hearts

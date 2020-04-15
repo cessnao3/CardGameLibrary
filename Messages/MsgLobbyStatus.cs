@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using GameLibrary.Games;
+using CardGameLibrary.Games;
 
-namespace GameLibrary.Messages
+namespace CardGameLibrary.Messages
 {
     /// <summary>
     /// Defines a message to provide lobby status to clients

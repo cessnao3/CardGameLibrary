@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLibrary.Games
+namespace CardGameLibrary.Games
 {
     /// <summary>
     /// Enum for the game types supported
@@ -10,7 +10,8 @@ namespace GameLibrary.Games
     public enum GameTypes
     {
         Invalid = 0,
-        Hearts = 1
+        Hearts = 1,
+        Euchre = 2
     };
 
     /// <summary>

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
-using System.Net.Sockets;
 using Newtonsoft.Json;
-using GameLibrary.Messages;
+using CardGameLibrary.Messages;
 
-namespace GameLibrary.Network
+namespace CardGameLibrary.Network
 {
     /// <summary>
     /// A helper class to manage sending/receiving data over the network
@@ -29,9 +29,9 @@ namespace GameLibrary.Network
         /// <summary>
         /// Sends the provided message to the provided TCP client
         /// </summary>
-        /// <param name="client">The client to send the message to</param>
+        /// <param name="client">The client to send the message over</param>
         /// <param name="msg">The message to serialize and send</param>
-        static public void SendMessage(TcpClient client, MsgBase msg)
+        static public void SendMessage(ClientStruct client, MsgBase msg)
         {
             // Serialize the message
             string s = JsonConvert.SerializeObject(msg);
@@ -39,24 +39,21 @@ namespace GameLibrary.Network
 
             // Convert the message to bytes, write, and flush the stream
             byte[] bytes = Encoding.ASCII.GetBytes(s);
-            client.GetStream().Write(bytes, 0, bytes.Length);
-            client.GetStream().Flush();
+            client.stream.Write(bytes, 0, bytes.Length);
+            client.stream.Flush();
         }
 
         /// <summary>
         /// Attempts to receive a message from the provided TCP client
         /// </summary>
-        /// <param name="client">The TCP client to receive a message from</param>
+        /// <param name="client">The client to read the message from</param>
         /// <returns>A message if found; otherwise null</returns>
-        static public MsgBase ReadMessage(TcpClient client)
+        static public MsgBase ReadMessage(ClientStruct client)
         {
             // Check if the client has bytes availble to read
             // If not, return null
-            if (client.Available > 0)
+            if (client.client.Available > 0)
             {
-                // Read the network stream
-                NetworkStream ns = client.GetStream();
-
                 // Read the string
                 StringBuilder sb = new StringBuilder();
 
@@ -64,7 +61,7 @@ namespace GameLibrary.Network
                 int colon_count = 0;
                 while ((c != '}' || colon_count > 0) && sb.Length < 10240)
                 {
-                    c = (char)ns.ReadByte();
+                    c = (char)client.stream.ReadByte();
                     sb.Append(c);
 
                     if (c == '{') colon_count += 1;
