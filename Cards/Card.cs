@@ -67,7 +67,7 @@ namespace CardGameLibrary.Cards
         /// <returns>An integer with a card value so that suits are separated</returns>
         protected int CardValue()
         {
-            return ((int)suit) * 16 + (int)value;
+            return ((int)suit) * 32 + (int)value;
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace CardGameLibrary.Cards
         /// <summary>
         /// Provides the default comparison to sort by suit first, then order
         /// </summary>
-        /// <param name="c1">the first card to compare</param>
-        /// <param name="c2">the second card to compare</param>
+        /// <param name="c1">The first card to compare</param>
+        /// <param name="c2">The second card to compare</param>
         /// <returns>Equal if 0, c1 < c2 if < 0</returns>
         public static int DefaultComparison(Card c1, Card c2)
         {

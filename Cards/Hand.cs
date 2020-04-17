@@ -25,9 +25,14 @@ namespace CardGameLibrary.Cards
         /// <summary>
         /// Sorts the cards based on the default card comparison
         /// </summary>
-        public void Sort()
+        /// <param name="comparison">The comparison function to use in sorting the cards</param>
+        public void Sort(Comparison<Card> comparison=null)
         {
-            cards.Sort(Card.DefaultComparison);
+            if (comparison == null)
+            {
+                comparison = Card.DefaultComparison;
+            }
+            cards.Sort(comparison);
         }
 
         /// <summary>
