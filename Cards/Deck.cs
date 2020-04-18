@@ -12,7 +12,7 @@ namespace CardGameLibrary.Cards
         /// <summary>
         /// Defines the list of cards to play with
         /// </summary>
-        public Card[] cards { get; private set; }
+        public Card[] cards { get; protected set; }
 
         /// <summary>
         /// Defines the next card to deal

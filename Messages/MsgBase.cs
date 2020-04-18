@@ -28,7 +28,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the type of the message
         /// </summary>
-        public MessageType msg_type;
+        public MessageType msg_type { get; private set; }
 
         /// <summary>
         /// Checks whether the message is valid

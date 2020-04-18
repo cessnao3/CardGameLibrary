@@ -32,6 +32,7 @@ namespace CardGameLibrary.Messages
             // Empty Constructor
         }
 
+
         /// <summary>
         /// Checks whether message parameters are valid
         /// </summary>

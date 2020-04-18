@@ -12,7 +12,7 @@ namespace CardGameLibrary.Games
         /// <summary>
         /// Defines the player user name
         /// </summary>
-        public string name { get; set; }
+        public string name { get; protected set; }
 
         /// <summary>
         /// Default parameterless constructor

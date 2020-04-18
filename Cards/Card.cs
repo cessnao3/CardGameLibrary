@@ -51,6 +51,11 @@ namespace CardGameLibrary.Cards
         public Value value { get; protected set; }
 
         /// <summary>
+        /// Sets the data parameter associated with a given card
+        /// </summary>
+        public int data { get; protected set; }
+
+        /// <summary>
         /// Initializes a card with a suit and value
         /// </summary>
         /// <param name="suit">Defines the card's suit</param>
@@ -59,6 +64,7 @@ namespace CardGameLibrary.Cards
         {
             this.suit = suit;
             this.value = value;
+            this.data = -1;
         }
 
         /// <summary>
@@ -117,12 +123,43 @@ namespace CardGameLibrary.Cards
             return c1.CardValue() - c2.CardValue();
         }
 
+        /// <summary>
+        /// Provides the string representation of the card
+        /// </summary>
+        /// <returns>String of the card name/value</returns>
         public override string ToString()
         {
             return string.Format(
                 "{0:s} of {1:s}s",
                 value.ToString(),
                 suit.ToString());
+        }
+
+        /// <summary>
+        /// Determines if the card is a special card based on whether the data
+        /// parameter is set
+        /// </summary>
+        /// <returns>True if the card is special and the data parameter is set</returns>
+        public bool IsSpecial()
+        {
+            return data >= 0;
+        }
+
+        /// <summary>
+        /// Creates a new special card with the provided data
+        /// </summary>
+        /// <param name="data">The data parameter to use for setting the special card types</param>
+        /// <returns></returns>
+        static public Card CreateSpecialCard(int data)
+        {
+            // Create a new card and set the data
+            Card c = new Card(
+                suit: Suit.Club,
+                value: Value.Two);
+            c.data = data;
+
+            // Return the resulting card
+            return c;
         }
     }
 }

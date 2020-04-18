@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardGameLibrary.Cards;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,11 @@ namespace CardGameLibrary.Messages
         public int game_id = -1;
 
         /// <summary>
+        /// Defines the game type of the game
+        /// </summary>
+        public int game_type = -1;
+
+        /// <summary>
         /// The players to read in
         /// </summary>
         public List<Games.GamePlayer> players;
@@ -22,12 +28,18 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The hands for each player
         /// </summary>
-        public List<Cards.Hand> hands;
+        public List<Hand> hands;
 
         /// <summary>
         /// The center pool of cards for each player
         /// </summary>
-        public List<Cards.Card> center_pool;
+        public List<Card> center_pool;
+
+        /// <summary>
+        /// The center cards that can be used for selecting trump or
+        /// performing other similar actions
+        /// </summary>
+        public List<Card> center_cards;
 
         /// <summary>
         /// The current score for each player
@@ -64,7 +76,8 @@ namespace CardGameLibrary.Messages
                 hands != null &&
                 current_game_status != null &&
                 game_id >= 0 &&
-                scores != null;
+                scores != null &&
+                game_type > 0;
         }
     }
 }
