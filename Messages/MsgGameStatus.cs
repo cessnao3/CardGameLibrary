@@ -23,7 +23,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The players to read in
         /// </summary>
-        public List<Games.GamePlayer> players;
+        public List<GameParameters.GamePlayer> players;
 
         /// <summary>
         /// The hands for each player
@@ -33,13 +33,13 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The center pool of cards for each player
         /// </summary>
-        public List<Card> center_pool;
+        public List<Card> played_cards_by_player;
 
         /// <summary>
         /// The center cards that can be used for selecting trump or
         /// performing other similar actions
         /// </summary>
-        public List<Card> center_cards;
+        public List<Card> center_action_cards;
 
         /// <summary>
         /// The current score for each player

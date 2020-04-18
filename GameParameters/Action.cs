@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CardGameLibrary.Games
+namespace CardGameLibrary.GameParameters
 {
     /// <summary>
     /// Defines an action that can be taken by the player

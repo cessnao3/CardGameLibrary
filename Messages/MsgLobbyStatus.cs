@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CardGameLibrary.Games;
+using CardGameLibrary.GameParameters;
 
 namespace CardGameLibrary.Messages
 {
