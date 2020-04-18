@@ -48,6 +48,19 @@ namespace CardGameLibrary.GameParameters
         }
 
         /// <summary>
+        /// Provide a short three-character name
+        /// </summary>
+        /// <returns>The short name for the player</returns>
+        public string ShortName()
+        {
+            return CapitalizedName().Substring(
+                0,
+                Math.Min(
+                    3,
+                    name.Length));
+        }
+
+        /// <summary>
         /// Determines if the object is equal to the player object
         /// </summary>
         /// <param name="obj">The object to compare to</param>
