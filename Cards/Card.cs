@@ -60,11 +60,12 @@ namespace CardGameLibrary.Cards
         /// </summary>
         /// <param name="suit">Defines the card's suit</param>
         /// <param name="value">Defines the card's value</param>
-        public Card(Suit suit, Value value)
+        /// <param name="data">Defines any special data associated with the card</param>
+        public Card(Suit suit, Value value, int data=-1)
         {
             this.suit = suit;
             this.value = value;
-            this.data = -1;
+            this.data = data;
         }
 
         /// <summary>
@@ -153,13 +154,10 @@ namespace CardGameLibrary.Cards
         static public Card CreateSpecialCard(int data)
         {
             // Create a new card and set the data
-            Card c = new Card(
+            return new Card(
                 suit: Suit.Club,
-                value: Value.Two);
-            c.data = data;
-
-            // Return the resulting card
-            return c;
+                value: Value.Two,
+                data: data);
         }
     }
 }

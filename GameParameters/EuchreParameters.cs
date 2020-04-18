@@ -7,15 +7,15 @@ namespace CardGameLibrary.GameParameters
 {
     public class EuchreParameters
     {
-        public static readonly Action go_alone = new Action(
+        public static readonly GameAction go_alone = new GameAction(
             name: "Go Alone",
             data: 10);
 
-        public static readonly Action pickup_card = new Action(
+        public static readonly GameAction pickup_card = new GameAction(
             name: "Pickup Card",
             data: 12);
 
-        public static readonly Action skip = new Action(
+        public static readonly GameAction skip = new GameAction(
             name: "Skip",
             data: 14);
     }
