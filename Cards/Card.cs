@@ -72,7 +72,7 @@ namespace CardGameLibrary.Cards
         /// Provides a relative card value based on the suit and card value
         /// </summary>
         /// <returns>An integer with a card value so that suits are separated</returns>
-        protected int CardValue()
+        public int CardValue()
         {
             return ((int)suit) * 32 + (int)value;
         }
