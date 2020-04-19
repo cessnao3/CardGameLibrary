@@ -27,7 +27,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the current user parameter
         /// </summary>
-        public Games.GamePlayer user;
+        public GameParameters.GamePlayer user;
 
         /// <summary>
         /// Constructor to set the server response

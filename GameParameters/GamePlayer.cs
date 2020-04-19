@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CardGameLibrary.Games
+namespace CardGameLibrary.GameParameters
 {
     /// <summary>
     /// Defines the properties for a specific game player
@@ -12,7 +12,7 @@ namespace CardGameLibrary.Games
         /// <summary>
         /// Defines the player user name
         /// </summary>
-        public string name { get; set; }
+        public string name { get; protected set; }
 
         /// <summary>
         /// Default parameterless constructor
@@ -45,6 +45,19 @@ namespace CardGameLibrary.Games
             {
                 return name.ToUpper();
             }
+        }
+
+        /// <summary>
+        /// Provide a short three-character name
+        /// </summary>
+        /// <returns>The short name for the player</returns>
+        public string ShortName()
+        {
+            return CapitalizedName().Substring(
+                0,
+                Math.Min(
+                    3,
+                    name.Length));
         }
 
         /// <summary>

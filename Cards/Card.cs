@@ -51,21 +51,28 @@ namespace CardGameLibrary.Cards
         public Value value { get; protected set; }
 
         /// <summary>
+        /// Sets the data parameter associated with a given card
+        /// </summary>
+        public int data { get; protected set; }
+
+        /// <summary>
         /// Initializes a card with a suit and value
         /// </summary>
         /// <param name="suit">Defines the card's suit</param>
         /// <param name="value">Defines the card's value</param>
-        public Card(Suit suit, Value value)
+        /// <param name="data">Defines any special data associated with the card</param>
+        public Card(Suit suit, Value value, int data=-1)
         {
             this.suit = suit;
             this.value = value;
+            this.data = data;
         }
 
         /// <summary>
         /// Provides a relative card value based on the suit and card value
         /// </summary>
         /// <returns>An integer with a card value so that suits are separated</returns>
-        protected int CardValue()
+        public int CardValue()
         {
             return ((int)suit) * 32 + (int)value;
         }
@@ -117,12 +124,40 @@ namespace CardGameLibrary.Cards
             return c1.CardValue() - c2.CardValue();
         }
 
+        /// <summary>
+        /// Provides the string representation of the card
+        /// </summary>
+        /// <returns>String of the card name/value</returns>
         public override string ToString()
         {
             return string.Format(
                 "{0:s} of {1:s}s",
                 value.ToString(),
                 suit.ToString());
+        }
+
+        /// <summary>
+        /// Determines if the card is a special card based on whether the data
+        /// parameter is set
+        /// </summary>
+        /// <returns>True if the card is special and the data parameter is set</returns>
+        public bool IsSpecial()
+        {
+            return data >= 0;
+        }
+
+        /// <summary>
+        /// Creates a new special card with the provided data
+        /// </summary>
+        /// <param name="data">The data parameter to use for setting the special card types</param>
+        /// <returns></returns>
+        static public Card CreateSpecialCard(int data)
+        {
+            // Create a new card and set the data
+            return new Card(
+                suit: Suit.Club,
+                value: Value.Two,
+                data: data);
         }
     }
 }

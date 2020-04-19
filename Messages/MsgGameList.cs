@@ -10,14 +10,30 @@ namespace CardGameLibrary.Messages
     public class MsgGameList : MsgBase
     {
         /// <summary>
+        /// Defines the item parameters for each list
+        /// </summary>
+        public class ListItem
+        {
+            /// <summary>
+            /// Defines the game ID value
+            /// </summary>
+            public int id_val;
+
+            /// <summary>
+            /// Defines the game type
+            /// </summary>
+            public int game_type;
+        }
+
+        /// <summary>
         /// Defines the list of lobbies, by ID, that may be joined
         /// </summary>
-        public List<int> lobbies;
+        public List<ListItem> lobbies;
 
         /// <summary>
         /// Defines the list of games, by ID, that may be played
         /// </summary>
-        public List<int> games;
+        public List<ListItem> games;
 
         /// <summary>
         /// Defines the game list message/response

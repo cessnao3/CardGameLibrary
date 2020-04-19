@@ -17,7 +17,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Sets up the player requesting the action
         /// </summary>
-        public Games.GamePlayer player;
+        public GameParameters.GamePlayer player;
 
         /// <summary>
         /// Defines the card to play
@@ -31,6 +31,7 @@ namespace CardGameLibrary.Messages
         {
             // Empty Constructor
         }
+
 
         /// <summary>
         /// Checks whether message parameters are valid
