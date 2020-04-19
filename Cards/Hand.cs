@@ -64,9 +64,19 @@ namespace CardGameLibrary.Cards
         /// <returns>True if the player has a card of the given suit</returns>
         public bool HasCardOfSuit(Card.Suit suit)
         {
+            return HasCardWith(x => x.suit == suit);
+        }
+
+        /// <summary>
+        /// Determines if the player has a card that matches the given predicate
+        /// </summary>
+        /// <param name="predicate">The predicate, of the form f(Card), to use</param>
+        /// <returns>True if any of the provided cards return true</returns>
+        public bool HasCardWith(Predicate<Card> predicate)
+        {
             foreach (Card c in cards)
             {
-                if (c.suit == suit)
+                if (predicate(c))
                 {
                     return true;
                 }
