@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
 
 namespace CardGameLibrary.Network
@@ -16,7 +17,7 @@ namespace CardGameLibrary.Network
         /// <summary>
         /// Stores the reference to the network stream
         /// </summary>
-        public NetworkStream stream { get; private set; }
+        public Stream stream { get; private set; }
 
         /// <summary>
         /// Constructs the client structure from a provided TcpClient and sets the
@@ -49,6 +50,15 @@ namespace CardGameLibrary.Network
                 client = null;
                 stream = null;
             }
+        }
+
+        /// <summary>
+        /// Replaces the current stream with the stream provided
+        /// </summary>
+        /// <param name="stream">The stream to replace the current stream with</param>
+        public void SetStream(Stream stream)
+        {
+            this.stream = stream;
         }
     }
 }
