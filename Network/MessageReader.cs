@@ -93,11 +93,18 @@ namespace CardGameLibrary.Network
                 foreach (Type t in types_to_convert)
                 {
                     // Attempt to convert to the given message type
-                    msg_item = (MsgBase)JsonConvert.DeserializeObject(s, t);
+                    try
+                    {
+                        msg_item = (MsgBase)JsonConvert.DeserializeObject(s, t);
+                    }
+                    catch (JsonReaderException)
+                    {
+                        msg_item = null;
+                    }
 
                     // If the message is valid, break the loop and deserialize as the given message
                     // Otherwise, clear the message item to try again
-                    if (msg_item.CheckMessage())
+                    if (msg_item != null && msg_item.CheckMessage())
                     {
                         break;
                     }
