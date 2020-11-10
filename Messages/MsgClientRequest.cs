@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
 namespace CardGameLibrary.Messages
@@ -25,18 +26,18 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The type of information to request from the client
         /// </summary>
-        public RequestType request;
+        public RequestType request { get; set; }
         
         /// <summary>
         /// The GameID to request information for
         /// </summary>
-        public int game_id;
+        public int game_id { get; set; }
 
         /// <summary>
         /// A specific data parameter that may or may not be used by
         /// messages
         /// </summary>
-        public int data = -1;
+        public int data { get; set; }
 
         /// <summary>
         /// Constructor to set the server response
@@ -45,6 +46,7 @@ namespace CardGameLibrary.Messages
         {
             // Define an initial invalid game_id
             game_id = -1;
+            data = -1;
         }
 
         /// <summary>

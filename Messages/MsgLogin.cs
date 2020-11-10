@@ -20,17 +20,17 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the action request from the user
         /// </summary>
-        public ActionType action;
+        public ActionType action { get; set; }
 
         /// <summary>
         /// Defines the username for the user
         /// </summary>
-        public string username;
+        public string username { get; set; }
 
         /// <summary>
         /// Defines the password hash for the user
         /// </summary>
-        public string password_hash;
+        public string password_hash { get; set; }
 
         /// <summary>
         /// Constructor to set the server response

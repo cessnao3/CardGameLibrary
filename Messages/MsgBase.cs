@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace CardGameLibrary.Messages
 {
@@ -11,7 +12,7 @@ namespace CardGameLibrary.Messages
     {
         Invalid = 0,
         Heartbeat = 1,
-        GameMessage = 10,
+        GamePlay = 10,
         ClientRequest = 20,
         ServerResponse = 30,
         UserLogin = 40,
@@ -28,7 +29,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the type of the message
         /// </summary>
-        public MessageType msg_type;
+        public MessageType msg_type { get; set; }
 
         /// <summary>
         /// Checks whether the message is valid

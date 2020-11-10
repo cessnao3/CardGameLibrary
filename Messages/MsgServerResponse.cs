@@ -22,12 +22,12 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The server response
         /// </summary>
-        public ResponseCodes code;
+        public ResponseCodes code { get; set; }
 
         /// <summary>
         /// Defines the current user parameter
         /// </summary>
-        public GameParameters.GamePlayer user;
+        public GameParameters.GamePlayer user { get; set; }
 
         /// <summary>
         /// Constructor to set the server response

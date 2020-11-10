@@ -12,24 +12,25 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the game ID to use
         /// </summary>
-        public int game_id = -1;
+        public int game_id { get; set; }
 
         /// <summary>
         /// Sets up the player requesting the action
         /// </summary>
-        public GameParameters.GamePlayer player;
+        public GameParameters.GamePlayer player { get; set; }
 
         /// <summary>
         /// Defines the card to play
         /// </summary>
-        public Cards.Card card;
+        public Cards.Card card { get; set; }
 
         /// <summary>
         /// Constructor to set the server response
         /// </summary>
-        public MsgGamePlay() : base(MessageType.GameMessage)
+        public MsgGamePlay() : base(MessageType.GamePlay)
         {
-            // Empty Constructor
+            // Initialize an empty game ID
+            game_id = -1;
         }
 
 
@@ -43,7 +44,7 @@ namespace CardGameLibrary.Messages
                 game_id >= 0 &&
                 card != null &&
                 player != null &&
-                msg_type == MessageType.GameMessage;
+                msg_type == MessageType.GamePlay;
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using CardGameLibrary.Messages;
 
 namespace CardGameLibrary.Network
@@ -16,6 +15,22 @@ namespace CardGameLibrary.Network
         /// Determines whether to print JSON output to the terminal
         /// </summary>
         protected static bool print_output = false;
+
+        /// <summary>
+        /// Message type conversion dictionary defines what message types to use for the provided
+        /// message ID values in the JSON packets
+        /// </summary>
+        readonly static Dictionary<MessageType, Type> type_convert_dict = new Dictionary<MessageType, Type>()
+        {
+            { MessageType.ClientRequest, typeof(MsgClientRequest) },
+            { MessageType.GameList, typeof(MsgGameList) },
+            { MessageType.GamePlay, typeof(MsgGamePlay) },
+            { MessageType.GameStatus, typeof(MsgGameStatus) },
+            { MessageType.Heartbeat, typeof(MsgHeartbeat) },
+            { MessageType.LobbyStatus, typeof(MsgLobbyStatus) },
+            { MessageType.ServerResponse, typeof(MsgServerResponse) },
+            { MessageType.UserLogin, typeof(MsgLogin) }
+        };
 
         /// <summary>
         /// Sets whether console printing of sent/received messages is enabled
@@ -34,7 +49,7 @@ namespace CardGameLibrary.Network
         static public void SendMessage(ClientStruct client, MsgBase msg)
         {
             // Serialize the message
-            string s = JsonConvert.SerializeObject(msg);
+            string s = JsonSerializer.Serialize(msg, msg.GetType());
             if (print_output) Console.WriteLine("Sending " + s);
 
             // Convert the message to bytes, write, and flush the stream
@@ -73,45 +88,44 @@ namespace CardGameLibrary.Network
                 // Print the string output
                 if (print_output) Console.WriteLine("Receiving " + s);
 
+                // Extract the message type to use in parsing
+                MessageType msg_type = MessageType.Invalid;
+
+                {
+                    // Parse the JSON document
+                    JsonDocument msg_doc = JsonDocument.Parse(s);
+
+                    // Define a value to use for pulling out the message type
+                    JsonElement msg_type_element;
+
+                    // Define an integer to use to extract the type id
+                    int msg_type_id_int;
+
+                    // Pull out the message type, and if successful, extract the message type value
+                    if (msg_doc.RootElement.TryGetProperty("msg_type", out msg_type_element) &&
+                        msg_type_element.TryGetInt32(out msg_type_id_int))
+                    {
+                        msg_type = (MessageType)msg_type_id_int;
+                    }
+                }
+
                 // Define the message item
                 MsgBase msg_item = null;
 
-                // Check all input items to check for conversion
-                Type[] types_to_convert = new Type[]
+                if (type_convert_dict.ContainsKey(msg_type))
                 {
-                        typeof(MsgGamePlay),
-                        typeof(MsgLogin),
-                        typeof(MsgServerResponse),
-                        typeof(MsgClientRequest),
-                        typeof(MsgGameStatus),
-                        typeof(MsgHeartbeat),
-                        typeof(MsgLobbyStatus),
-                        typeof(MsgGameList)
-                };
+                    msg_item = (MsgBase)JsonSerializer.Deserialize(
+                        s,
+                        type_convert_dict[msg_type]);
 
-                // Loop through each type and attempt to convert as a type
-                foreach (Type t in types_to_convert)
-                {
-                    // Attempt to convert to the given message type
-                    try
-                    {
-                        msg_item = (MsgBase)JsonConvert.DeserializeObject(s, t);
-                    }
-                    catch (JsonReaderException)
+                    if (msg_item != null && !msg_item.CheckMessage())
                     {
                         msg_item = null;
                     }
-
-                    // If the message is valid, break the loop and deserialize as the given message
-                    // Otherwise, clear the message item to try again
-                    if (msg_item != null && msg_item.CheckMessage())
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        msg_item = null;
-                    }
+                }
+                else
+                {
+                    msg_item = null;
                 }
 
                 // Return the parsed message, or null if all failed

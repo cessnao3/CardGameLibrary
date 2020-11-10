@@ -17,23 +17,23 @@ namespace CardGameLibrary.Messages
             /// <summary>
             /// Defines the game ID value
             /// </summary>
-            public int id_val;
+            public int id_val { get; set; }
 
             /// <summary>
             /// Defines the game type
             /// </summary>
-            public int game_type;
+            public int game_type { get; set; }
         }
 
         /// <summary>
         /// Defines the list of lobbies, by ID, that may be joined
         /// </summary>
-        public List<ListItem> lobbies;
+        public List<ListItem> lobbies { get; set; }
 
         /// <summary>
         /// Defines the list of games, by ID, that may be played
         /// </summary>
-        public List<ListItem> games;
+        public List<ListItem> games { get; set; }
 
         /// <summary>
         /// Defines the game list message/response

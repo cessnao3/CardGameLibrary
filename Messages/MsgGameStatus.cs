@@ -13,55 +13,57 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the ID of the game
         /// </summary>
-        public int game_id = -1;
+        public int game_id { get; set; }
 
         /// <summary>
         /// Defines the game type of the game
         /// </summary>
-        public int game_type = -1;
+        public int game_type { get; set; }
 
         /// <summary>
         /// The players to read in
         /// </summary>
-        public List<GameParameters.GamePlayer> players;
+        public List<GameParameters.GamePlayer> players { get; set; }
 
         /// <summary>
         /// The hands for each player
         /// </summary>
-        public List<Hand> hands;
+        public List<Hand> hands { get; set; }
 
         /// <summary>
         /// The center pool of cards for each player
         /// </summary>
-        public List<Card> played_cards_by_player;
+        public List<Card> played_cards_by_player { get; set; }
 
         /// <summary>
         /// The center cards that can be used for selecting trump or
         /// performing other similar actions
         /// </summary>
-        public List<Card> center_action_cards;
+        public List<Card> center_action_cards { get; set; }
 
         /// <summary>
         /// The current score for each player
         /// </summary>
-        public List<int> scores;
+        public List<int> scores { get; set; }
 
         /// <summary>
         /// Defines the current game status for different games
         /// </summary>
-        public string current_game_status;
+        public string current_game_status { get; set; }
 
         /// <summary>
         /// The current player needing to play
         /// </summary>
-        public int current_player;
+        public int current_player { get; set; }
 
         /// <summary>
         /// Default hearts game status constructor
         /// </summary>
         public MsgGameStatus() : base(MessageType.GameStatus)
         {
-            // Empty Constructor
+            // Initialize the game type and ID
+            game_id = -1;
+            game_type = -1;
         }
 
         /// <summary>

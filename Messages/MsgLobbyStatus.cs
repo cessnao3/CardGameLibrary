@@ -13,29 +13,32 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the ID of the game
         /// </summary>
-        public int game_id = -1;
+        public int game_id { get; set; }
 
         /// <summary>
         /// The players to read in
         /// </summary>
-        public List<GamePlayer> players;
+        public List<GamePlayer> players { get; set; }
 
         /// <summary>
         /// The game type for the current lobby
         /// </summary>
-        public GameTypes game_type = GameTypes.Invalid;
+        public GameTypes game_type { get; set; }
 
         /// <summary>
         /// Determines if the lobby is ready
         /// </summary>
-        public bool lobby_ready = false;
+        public bool lobby_ready { get; set; }
 
         /// <summary>
         /// Constructor to setup the lobby status message
         /// </summary>
         public MsgLobbyStatus() : base(MessageType.LobbyStatus)
         {
-            // Empty Constructor
+            // Initilize Parameters
+            game_id = -1;
+            game_type = GameTypes.Invalid;
+            lobby_ready = false;
         }
 
         /// <summary>
