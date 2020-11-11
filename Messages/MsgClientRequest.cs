@@ -26,27 +26,27 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The type of information to request from the client
         /// </summary>
-        public RequestType request { get; set; }
+        public RequestType Request { get; set; }
         
         /// <summary>
         /// The GameID to request information for
         /// </summary>
-        public int game_id { get; set; }
+        public int GameID { get; set; }
 
         /// <summary>
         /// A specific data parameter that may or may not be used by
         /// messages
         /// </summary>
-        public int data { get; set; }
+        public int Data { get; set; }
 
         /// <summary>
         /// Constructor to set the server response
         /// </summary>
-        public MsgClientRequest() : base(MessageType.ClientRequest)
+        public MsgClientRequest() : base(MessageTypeID.ClientRequest)
         {
             // Define an initial invalid game_id
-            game_id = -1;
-            data = -1;
+            GameID = -1;
+            Data = -1;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CardGameLibrary.Messages
         /// <returns></returns>
         public override bool CheckMessage()
         {
-            return msg_type == MessageType.ClientRequest;
+            return MessageType == MessageTypeID.ClientRequest;
         }
     }
 }

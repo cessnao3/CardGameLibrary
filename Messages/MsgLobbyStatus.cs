@@ -13,32 +13,32 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the ID of the game
         /// </summary>
-        public int game_id { get; set; }
+        public int GameID { get; set; }
 
         /// <summary>
         /// The players to read in
         /// </summary>
-        public List<GamePlayer> players { get; set; }
+        public List<GamePlayer> Players { get; set; }
 
         /// <summary>
         /// The game type for the current lobby
         /// </summary>
-        public GameTypes game_type { get; set; }
+        public GameTypes GameType { get; set; }
 
         /// <summary>
         /// Determines if the lobby is ready
         /// </summary>
-        public bool lobby_ready { get; set; }
+        public bool LobbyReady { get; set; }
 
         /// <summary>
         /// Constructor to setup the lobby status message
         /// </summary>
-        public MsgLobbyStatus() : base(MessageType.LobbyStatus)
+        public MsgLobbyStatus() : base(MessageTypeID.LobbyStatus)
         {
             // Initilize Parameters
-            game_id = -1;
-            game_type = GameTypes.Invalid;
-            lobby_ready = false;
+            GameID = -1;
+            GameType = GameTypes.Invalid;
+            LobbyReady = false;
         }
 
         /// <summary>
@@ -48,10 +48,10 @@ namespace CardGameLibrary.Messages
         public override bool CheckMessage()
         {
             return
-                msg_type == MessageType.LobbyStatus &&
-                game_id >= 0 &&
-                players != null &&
-                game_type != GameTypes.Invalid;
+                MessageType == MessageTypeID.LobbyStatus &&
+                GameID >= 0 &&
+                Players != null &&
+                GameType != GameTypes.Invalid;
         }
     }
 }

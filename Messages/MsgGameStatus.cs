@@ -13,57 +13,57 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the ID of the game
         /// </summary>
-        public int game_id { get; set; }
+        public int GameID { get; set; }
 
         /// <summary>
         /// Defines the game type of the game
         /// </summary>
-        public int game_type { get; set; }
+        public int GameType { get; set; }
 
         /// <summary>
         /// The players to read in
         /// </summary>
-        public List<GameParameters.GamePlayer> players { get; set; }
+        public List<GameParameters.GamePlayer> Players { get; set; }
 
         /// <summary>
         /// The hands for each player
         /// </summary>
-        public List<Hand> hands { get; set; }
+        public List<Hand> Hands { get; set; }
 
         /// <summary>
         /// The center pool of cards for each player
         /// </summary>
-        public List<Card> played_cards_by_player { get; set; }
+        public List<Card> PlayedCardsByPlayer { get; set; }
 
         /// <summary>
         /// The center cards that can be used for selecting trump or
         /// performing other similar actions
         /// </summary>
-        public List<Card> center_action_cards { get; set; }
+        public List<Card> CenterActionCards { get; set; }
 
         /// <summary>
         /// The current score for each player
         /// </summary>
-        public List<int> scores { get; set; }
+        public List<int> Scores { get; set; }
 
         /// <summary>
         /// Defines the current game status for different games
         /// </summary>
-        public string current_game_status { get; set; }
+        public string CurrentGameStatus { get; set; }
 
         /// <summary>
         /// The current player needing to play
         /// </summary>
-        public int current_player { get; set; }
+        public int CurrentPlayer { get; set; }
 
         /// <summary>
         /// Default hearts game status constructor
         /// </summary>
-        public MsgGameStatus() : base(MessageType.GameStatus)
+        public MsgGameStatus() : base(MessageTypeID.GameStatus)
         {
             // Initialize the game type and ID
-            game_id = -1;
-            game_type = -1;
+            GameID = -1;
+            GameType = -1;
         }
 
         /// <summary>
@@ -73,13 +73,13 @@ namespace CardGameLibrary.Messages
         public override bool CheckMessage()
         {
             return
-                msg_type == MessageType.GameStatus &&
-                players != null &&
-                hands != null &&
-                current_game_status != null &&
-                game_id >= 0 &&
-                scores != null &&
-                game_type > 0;
+                MessageType == MessageTypeID.GameStatus &&
+                Players != null &&
+                Hands != null &&
+                CurrentGameStatus != null &&
+                GameID >= 0 &&
+                Scores != null &&
+                GameType > 0;
         }
     }
 }

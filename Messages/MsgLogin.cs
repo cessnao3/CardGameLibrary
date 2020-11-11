@@ -20,22 +20,22 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the action request from the user
         /// </summary>
-        public ActionType action { get; set; }
+        public ActionType Action { get; set; }
 
         /// <summary>
         /// Defines the username for the user
         /// </summary>
-        public string username { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Defines the password hash for the user
         /// </summary>
-        public string password_hash { get; set; }
+        public string PasswordHash { get; set; }
 
         /// <summary>
         /// Constructor to set the server response
         /// </summary>
-        public MsgLogin() : base(MessageType.UserLogin)
+        public MsgLogin() : base(MessageTypeID.UserLogin)
         {
             // Empty Constructor
         }
@@ -47,9 +47,9 @@ namespace CardGameLibrary.Messages
         public override bool CheckMessage()
         {
             return
-                username != null &&
-                password_hash != null &&
-                msg_type == MessageType.UserLogin;
+                Username != null &&
+                PasswordHash != null &&
+                MessageType == MessageTypeID.UserLogin;
         }
     }
 }

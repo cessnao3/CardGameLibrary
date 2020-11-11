@@ -14,22 +14,22 @@ namespace CardGameLibrary.Network
         /// <summary>
         /// Determines whether to print JSON output to the terminal
         /// </summary>
-        protected static bool print_output = false;
+        private static bool print_output = false;
 
         /// <summary>
         /// Message type conversion dictionary defines what message types to use for the provided
         /// message ID values in the JSON packets
         /// </summary>
-        readonly static Dictionary<MessageType, Type> type_convert_dict = new Dictionary<MessageType, Type>()
+        readonly static Dictionary<MessageTypeID, Type> type_convert_dict = new Dictionary<MessageTypeID, Type>()
         {
-            { MessageType.ClientRequest, typeof(MsgClientRequest) },
-            { MessageType.GameList, typeof(MsgGameList) },
-            { MessageType.GamePlay, typeof(MsgGamePlay) },
-            { MessageType.GameStatus, typeof(MsgGameStatus) },
-            { MessageType.Heartbeat, typeof(MsgHeartbeat) },
-            { MessageType.LobbyStatus, typeof(MsgLobbyStatus) },
-            { MessageType.ServerResponse, typeof(MsgServerResponse) },
-            { MessageType.UserLogin, typeof(MsgLogin) }
+            { MessageTypeID.ClientRequest, typeof(MsgClientRequest) },
+            { MessageTypeID.GameList, typeof(MsgGameList) },
+            { MessageTypeID.GamePlay, typeof(MsgGamePlay) },
+            { MessageTypeID.GameStatus, typeof(MsgGameStatus) },
+            { MessageTypeID.Heartbeat, typeof(MsgHeartbeat) },
+            { MessageTypeID.LobbyStatus, typeof(MsgLobbyStatus) },
+            { MessageTypeID.ServerResponse, typeof(MsgServerResponse) },
+            { MessageTypeID.UserLogin, typeof(MsgLogin) }
         };
 
         /// <summary>
@@ -89,28 +89,22 @@ namespace CardGameLibrary.Network
                 if (print_output) Console.WriteLine("Receiving " + s);
 
                 // Extract the message type to use in parsing
-                MessageType msg_type = MessageType.Invalid;
+                MessageTypeID msg_type = MessageTypeID.Invalid;
 
                 {
                     // Parse the JSON document
                     JsonDocument msg_doc = JsonDocument.Parse(s);
 
-                    // Define a value to use for pulling out the message type
-                    JsonElement msg_type_element;
-
-                    // Define an integer to use to extract the type id
-                    int msg_type_id_int;
-
                     // Pull out the message type, and if successful, extract the message type value
-                    if (msg_doc.RootElement.TryGetProperty("msg_type", out msg_type_element) &&
-                        msg_type_element.TryGetInt32(out msg_type_id_int))
+                    if (msg_doc.RootElement.TryGetProperty("MessageType", out JsonElement msg_type_element) &&
+                        msg_type_element.TryGetInt32(out int msg_type_id_int))
                     {
-                        msg_type = (MessageType)msg_type_id_int;
+                        msg_type = (MessageTypeID)msg_type_id_int;
                     }
                 }
 
                 // Define the message item
-                MsgBase msg_item = null;
+                MsgBase msg_item;
 
                 if (type_convert_dict.ContainsKey(msg_type))
                 {

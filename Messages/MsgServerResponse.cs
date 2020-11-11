@@ -22,17 +22,17 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// The server response
         /// </summary>
-        public ResponseCodes code { get; set; }
+        public ResponseCodes ResponseCode { get; set; }
 
         /// <summary>
         /// Defines the current user parameter
         /// </summary>
-        public GameParameters.GamePlayer user { get; set; }
+        public GameParameters.GamePlayer User { get; set; }
 
         /// <summary>
         /// Constructor to set the server response
         /// </summary>
-        public MsgServerResponse() : base(MessageType.ServerResponse)
+        public MsgServerResponse() : base(MessageTypeID.ServerResponse)
         {
             // Empty Constructor
         }
@@ -44,8 +44,8 @@ namespace CardGameLibrary.Messages
         public override bool CheckMessage()
         {
             return
-                msg_type == MessageType.ServerResponse &&
-                user != null;
+                MessageType == MessageTypeID.ServerResponse &&
+                User != null;
         }
     }
 }

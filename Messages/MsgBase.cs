@@ -8,7 +8,7 @@ namespace CardGameLibrary.Messages
     /// <summary>
     /// Defines the types of messages we can use in the given parameters
     /// </summary>
-    public enum MessageType
+    public enum MessageTypeID
     {
         Invalid = 0,
         Heartbeat = 1,
@@ -29,7 +29,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Defines the type of the message
         /// </summary>
-        public MessageType msg_type { get; set; }
+        public MessageTypeID MessageType { get; set; }
 
         /// <summary>
         /// Checks whether the message is valid
@@ -42,16 +42,16 @@ namespace CardGameLibrary.Messages
         /// </summary>
         private MsgBase()
         {
-            msg_type = MessageType.Invalid;
+            MessageType = MessageTypeID.Invalid;
         }
 
         /// <summary>
         /// Constructor to force definition of the message type
         /// </summary>
-        /// <param name="msg_t">The message type to associate with the message</param>
-        public MsgBase(MessageType msg_t)
+        /// <param name="message_type">The message type to associate with the message</param>
+        public MsgBase(MessageTypeID message_type)
         {
-            msg_type = msg_t;
+            MessageType = message_type;
         }
     }
 }

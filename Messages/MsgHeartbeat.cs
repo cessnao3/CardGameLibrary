@@ -12,7 +12,7 @@ namespace CardGameLibrary.Messages
         /// <summary>
         /// Constuctor to provide a basic heartbeat message
         /// </summary>
-        public MsgHeartbeat() : base(MessageType.Heartbeat)
+        public MsgHeartbeat() : base(MessageTypeID.Heartbeat)
         {
             // Empty constructor
         }
@@ -23,7 +23,7 @@ namespace CardGameLibrary.Messages
         /// <returns>Returns true if the expected type is correct</returns>
         public override bool CheckMessage()
         {
-            return msg_type == MessageType.Heartbeat;
+            return MessageType == MessageTypeID.Heartbeat;
         }
     }
 }
