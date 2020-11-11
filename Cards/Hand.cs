@@ -12,7 +12,7 @@ namespace CardGameLibrary.Cards
         /// <summary>
         /// Defines the cards present in the player hand
         /// </summary>
-        public List<Card> cards { get; protected set; }
+        public List<Card> cards { get; set; }
 
         /// <summary>
         /// Initializes an empty player hand

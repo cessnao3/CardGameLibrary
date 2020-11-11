@@ -43,17 +43,17 @@ namespace CardGameLibrary.Cards
         /// <summary>
         /// Defines the card's suit
         /// </summary>
-        public Suit suit { get; protected set; }
+        public Suit suit { get; set; }
 
         /// <summary>
         /// Defines the card's value
         /// </summary>
-        public Value value { get; protected set; }
+        public Value value { get; set; }
 
         /// <summary>
         /// Sets the data parameter associated with a given card
         /// </summary>
-        public int data { get; protected set; }
+        public int data { get; set; }
 
         /// <summary>
         /// Initializes a card with a suit and value
